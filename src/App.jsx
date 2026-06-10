@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzbQaPgJ1yEOuYyBgJbiqO8MGUtcY7B3_Tm-_Vm4wLl-bLOmH2cr63Rwk_P6v3m2GM/exec";
+const SCRIPT_URL = "https://script.google.com/a/macros/cloudlinux.com/s/AKfycbyEEpOlaPsZIRh8A0T_a1W1uEd-2h2-5ab0cIg957HtlAX-xRY53D4VryqrQOBNlghp/exec";
 const MILESTONES = ["1 month", "3 months", "6 months"];
 
 const INTERN_CORE = [
