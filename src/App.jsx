@@ -79,7 +79,7 @@ function Admin({onBack}){const[tab,setTab]=useState("dashboard"),[sel,setSel]=us
 const showToast=(msg,type="success")=>{setToast({msg,type});setTimeout(()=>setToast(null),3000);};
 const toggleSort=key=>setSort(p=>p.key===key?{key,dir:p.dir==="asc"?"desc":"asc"}:{key,dir:"asc"});
 const sortRows=(rows,key,dir)=>{if(!key)return rows;return[...rows].sort((a,b)=>{let va=a[key]||"",vb=b[key]||"";const na=parseFloat(va),nb=parseFloat(vb);if(!isNaN(na)&&!isNaN(nb))return dir==="asc"?na-nb:nb-na;return dir==="asc"?String(va).localeCompare(String(vb)):String(vb).localeCompare(String(va));});};
-const load=useCallback(async()=>{setLoading(true);setErr(null);try{const r=await fetch(SCRIPT_URL);const j=await r.json();const norm=Object.fromEntries(Object.entries(j).map(([k,v])=>[k,Array.isArray(v)?normRows(v):v]));setData(norm);if(norm["Registry"])setRegistry(norm["Registry"]);else if(norm["Internship Programme"])setRegistry(norm["Internship Programme"]);}catch(e){setErr("Could not load data.");}setLoading(false);},[]);
+const load=useCallback(async()=>{setLoading(true);setErr(null);try{const r=await fetch(SCRIPT_URL);const j=await r.json();console.log(JSON.stringify(j));const norm=Object.fromEntries(Object.entries(j).map(([k,v])=>[k,Array.isArray(v)?normRows(v):v]));setData(norm);if(norm["Registry"])setRegistry(norm["Registry"]);else if(norm["Internship Programme"])setRegistry(norm["Internship Programme"]);}catch(e){setErr("Could not load data.");}setLoading(false);},[]);
 useEffect(()=>{load();},[load]);
 const intern=data?.["Intern Responses"]||[],mgr=data?.["Manager Responses"]||[];
 const all=useMemo(()=>[...intern.map(r=>({...r,_type:"intern"})),...mgr.map(r=>({...r,_type:"manager"}))],[intern,mgr]);
